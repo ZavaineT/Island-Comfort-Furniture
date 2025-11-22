@@ -1,0 +1,586 @@
+/* ===========================
+   Design System / Base
+   =========================== */
+:root {
+  --bg-page: #f5f5f7;
+  --bg-surface: #ffffff;
+  --bg-soft: #f9fafb;
+
+  --accent: #2563eb;
+  --accent-soft: #dbeafe;
+  --accent-strong: #1d4ed8;
+
+  --text-main: #0f172a;
+  --text-muted: #6b7280;
+  --border-subtle: #e5e7eb;
+  --shadow-soft: 0 18px 45px rgba(15, 23, 42, 0.08);
+
+  --radius-lg: 16px;
+  --radius-md: 10px;
+  --radius-sm: 6px;
+
+  --transition-fast: 150ms ease;
+}
+
+/* Reset */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  line-height: 1.6;
+  background: radial-gradient(circle at top, #e5edff 0, transparent 45%),
+    var(--bg-page);
+  color: var(--text-main);
+}
+
+/* Generic layout helpers */
+.main-content {
+  padding: 2.5rem 1.5rem 3.5rem;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.section-title {
+  margin-bottom: 1.5rem;
+  font-size: 1.85rem;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+}
+
+/* ===========================
+   Header & Navigation
+   =========================== */
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+.header {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(226, 232, 240, 0.9);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.06);
+  padding: 0.9rem 1.5rem;
+}
+
+.header,
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.35rem;
+  letter-spacing: 0;
+  color: var(--text-main);
+}
+
+.logo span {
+  font-weight: 400;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-left: 0.35rem;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.nav-links a {
+  position: relative;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.35rem 0;
+  transition: color var(--transition-fast);
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -0.15rem;
+  width: 0;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-strong));
+  transition: width var(--transition-fast);
+}
+
+.nav-links a:hover {
+  color: var(--text-main);
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after {
+  width: 100%;
+}
+
+.nav-links a.active {
+  color: var(--text-main);
+}
+
+/* ===========================
+   Hero (Home Page)
+   =========================== */
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52vh;
+  padding: 3rem 1.5rem 2rem;
+  background: radial-gradient(circle at top left, #dbeafe 0, transparent 55%),
+    #f5f5f7;
+}
+
+.hero-text {
+  max-width: 1120px;
+  width: 100%;
+  text-align: left;
+}
+
+.hero-text h1 {
+  font-size: clamp(2.2rem, 4vw, 2.9rem);
+  letter-spacing: -0.04em;
+  margin-bottom: 0.75rem;
+  color: var(--text-main);
+}
+
+.hero-text p {
+  font-size: 1.02rem;
+  color: var(--text-muted);
+  max-width: 480px;
+  margin-bottom: 1.6rem;
+}
+
+.hero .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+/* ===========================
+   Buttons
+   =========================== */
+
+.btn,
+button,
+.add-to-cart {
+  font-family: inherit;
+}
+
+.btn,
+.add-to-cart,
+.form-buttons button {
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  color: #fff;
+  padding: 0.7rem 1.5rem;
+  border-radius: 999px;
+  border: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: 0 10px 30px rgba(37, 99, 235, 0.35);
+  transition: transform var(--transition-fast),
+    box-shadow var(--transition-fast), background 160ms ease-out;
+}
+
+.btn:hover,
+.add-to-cart:hover,
+.form-buttons button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 40px rgba(37, 99, 235, 0.45);
+}
+
+.form-buttons button.secondary {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border-subtle);
+  box-shadow: none;
+}
+
+.form-buttons button.secondary:hover {
+  background: var(--bg-soft);
+  transform: none;
+}
+
+/* ===========================
+   Product Grid
+   =========================== */
+
+.product-grid {
+  display: grid;
+  gap: 1.9rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.product-card {
+  background-color: var(--bg-surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  padding: 1.2rem 1.2rem 1.4rem;
+  box-shadow: var(--shadow-soft);
+  transition: transform 160ms ease-out, box-shadow 160ms ease-out,
+    border-color 160ms ease-out;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 0.55rem;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.16);
+  border-color: rgba(37, 99, 235, 0.18);
+}
+
+.product-card img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+  margin-bottom: 0.6rem;
+}
+
+.product-card h3 {
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.product-card .price {
+  color: var(--accent-strong);
+  font-weight: 650;
+  font-size: 1rem;
+  margin-bottom: 0.4rem;
+}
+
+.product-card .add-to-cart {
+  align-self: flex-start;
+  padding-inline: 1.2rem;
+}
+
+/* ===========================
+   Content Blocks (About, Forms, Cart, Invoice)
+   =========================== */
+
+.about-section .about-box,
+.form-section .form-box,
+.cart-section,
+.invoice-section {
+  background: var(--bg-surface);
+  padding: 1.9rem 2rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-soft);
+  margin-bottom: 2rem;
+}
+
+/* Tint the default about boxes with a soft background to enhance contrast */
+.about-section .about-box {
+  background: var(--bg-soft);
+}
+
+/* Highlight the student information card with an accent border and tinted background */
+.about-section .about-box.student-info {
+  border-left: 4px solid var(--accent-strong);
+  background: var(--accent-soft);
+}
+
+/* Slightly larger heading inside highlighted card */
+.about-section .about-box.student-info h2 {
+  font-size: 1.5rem;
+  margin-bottom: 0.6rem;
+}
+
+/* Adjust spacing for student info paragraphs */
+.about-section .about-box.student-info p {
+  margin-bottom: 0.3rem;
+}
+
+/* Link styling inside student info for improved readability */
+.about-section .about-box.student-info a {
+  color: var(--accent-strong);
+  text-decoration: underline;
+}
+
+.about-section h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1.2rem;
+}
+
+.about-section .about-box + .about-box {
+  margin-top: 1rem;
+}
+
+.about-section p {
+  color: var(--text-muted);
+  margin-bottom: 0.4rem;
+}
+
+.about-section p strong {
+  color: var(--text-main);
+}
+
+/* Forms */
+.form-section h2,
+.cart-section h2,
+.invoice-section h2 {
+  font-size: 1.4rem;
+  margin-bottom: 1.2rem;
+}
+
+form label {
+  font-weight: 550;
+  font-size: 0.9rem;
+  color: var(--text-main);
+}
+
+form input,
+form textarea {
+  width: 100%;
+  padding: 0.65rem 0.75rem;
+  margin: 0.4rem 0 1rem 0;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--bg-soft);
+  font-size: 0.95rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast),
+    background 120ms ease-out;
+}
+
+form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+form input:focus,
+form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: #fff;
+  box-shadow: 0 0 0 1px var(--accent-soft);
+}
+
+.form-buttons {
+  display: flex;
+  gap: 0.8rem;
+  margin-top: 0.4rem;
+  flex-wrap: wrap;
+}
+
+/* Cart */
+#cart-items {
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 1.1rem;
+  margin-top: 0.8rem;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.65rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.95rem;
+}
+
+.cart-item span {
+  color: var(--text-main);
+}
+
+.cart-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+#cart-summary {
+  margin-top: 1.2rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 550;
+}
+
+/* Invoice */
+.invoice-section {
+  max-width: 720px;
+  margin-inline: auto;
+}
+
+#invoice-content {
+  margin-bottom: 1.2rem;
+}
+
+.invoice-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.1rem;
+}
+
+.invoice-table th,
+.invoice-table td {
+  border-bottom: 1px solid var(--border-subtle);
+  padding: 0.55rem 0.3rem;
+  font-size: 0.92rem;
+}
+
+.invoice-table th {
+  text-align: left;
+  color: var(--text-muted);
+  font-weight: 550;
+}
+
+.invoice-total {
+  display: flex;
+  justify-content: flex-end;
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+
+/* ===========================
+   Footer
+   =========================== */
+
+footer {
+  background-color: rgba(255, 255, 255, 0.92);
+  border-top: 1px solid rgba(226, 232, 240, 0.9);
+  padding: 1.2rem 1.5rem 1.5rem;
+  margin-top: 2rem;
+}
+
+.footer p {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+/* ===========================
+   Responsive
+   =========================== */
+
+@media (max-width: 768px) {
+  .header,
+  .header-inner {
+    padding-inline: 1rem;
+  }
+
+  .nav-links {
+    gap: 0.9rem;
+    font-size: 0.9rem;
+  }
+
+  .hero-text {
+    text-align: left;
+  }
+
+  .about-section .about-box,
+  .form-section .form-box,
+  .cart-section,
+  .invoice-section {
+    padding: 1.4rem 1.2rem;
+  }
+
+  .main-content {
+    padding-inline: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-links {
+    display: none; /* For assignment it's okay; for real project you'd replace with mobile menu */
+  }
+
+  .hero {
+    min-height: 42vh;
+    padding-top: 2.5rem;
+  }
+}
+
+/* ==========================================
+   Additional styles for enhanced cart, checkout and invoice pages
+   ========================================== */
+.cart-table,
+.invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+.cart-table th,
+.cart-table td,
+.invoice-table th,
+.invoice-table td {
+  padding: 0.6rem 0.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+  text-align: left;
+}
+.cart-table th,
+.invoice-table th {
+  font-weight: 600;
+  color: var(--text-main);
+  background-color: var(--bg-soft);
+}
+.cart-table td input.qty-input {
+  width: 70px;
+  padding: 0.3rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  text-align: center;
+}
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.3rem 0;
+  font-size: 0.95rem;
+}
+.summary-row.total {
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-top: 0.4rem;
+}
+.summary-list {
+  list-style: none;
+  padding-left: 1rem;
+  margin-bottom: 0.6rem;
+}
+.summary-list li {
+  margin-bottom: 0.25rem;
+}
+.invoice-summary .summary-row {
+  margin: 0.2rem 0;
+}
